@@ -1,15 +1,31 @@
 package com.shou.eleme.domain;
 
-public enum OrderType {
-    temp,
-    美食,
-    早餐,
-    跑腿代购,
-    汉堡披萨,
-    甜品饮品,
-    速食简餐,
-    地方小吃,
-    米粉面馆,
-    包子粥铺,
-    炸鸡炸串
+public class OrderType {
+    public int orderTypeId;
+    public String orderTypename;
+    public String orderTypeimg;
+
+    public int getOrderTypeId() {
+        return orderTypeId;
+    }
+
+    public void setOrderTypeId(int orderTypeId) {
+        this.orderTypeId = orderTypeId;
+    }
+
+    public String getOrderTypename() {
+        return orderTypename;
+    }
+
+    public void setOrderTypename(String orderTypename) {
+        this.orderTypename = orderTypename;
+    }
+
+    public String getOrderTypeimg() {
+        return orderTypeimg;
+    }
+
+    public void setOrderTypeimg(String orderTypeimg) {
+        this.orderTypeimg = orderTypeimg;
+    }
 }

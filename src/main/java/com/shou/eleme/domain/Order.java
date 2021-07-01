@@ -59,8 +59,8 @@ public class Order {
         return orderDate;
     }
 
-    public void setOrderDate(String orderDate) {
-        this.orderDate = orderDate;
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = transTime(orderDate);
     }
 
     public double getOrderTotal() {
