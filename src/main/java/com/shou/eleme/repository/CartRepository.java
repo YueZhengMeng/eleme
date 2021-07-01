@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 @Mapper
 public interface CartRepository {
-    @Insert("insert into cart(foodId,businessId,userId) values(#{foodId},#{businessId},#{userId})")
+    @Insert("insert into cart(foodId,businessId,userId,quantity) values(#{foodId},#{businessId},#{userId},#{quantity})")
     void insertCart(Cart cart);
 
     @Delete("delete from cart where cartId=#{cartId}")

@@ -26,8 +26,7 @@ public class CartController {
 
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
-    public Cart addCart(@RequestBody Cart cart) {
+    public void addCart(@RequestBody Cart cart) {
         cartService.addCart(cart);
-        return cart;
     }
 }
