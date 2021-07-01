@@ -11,6 +11,19 @@ public class Business {
     public double deliveryPrice;
     public String remarks;
 
+    public Business(int businessId, int businessName, String businessAddress, String businessExplain,
+                    String businessImg, int orderTypeId, double starPrice, double deliveryPrice, String remarks) {
+        this.businessId = businessId;
+        this.businessName = businessName;
+        this.businessAddress = businessAddress;
+        this.businessExplain = businessExplain;
+        this.businessImg = businessImg;
+        this.orderTypeId = orderTypeId;
+        this.starPrice = starPrice;
+        this.deliveryPrice = deliveryPrice;
+        this.remarks = remarks;
+    }
+
     public int getBusinessId() {
         return businessId;
     }

@@ -5,6 +5,12 @@ public class OrderType {
     public String orderTypename;
     public String orderTypeimg;
 
+    public OrderType(int orderTypeId, String orderTypename, String orderTypeimg) {
+        this.orderTypeId = orderTypeId;
+        this.orderTypename = orderTypename;
+        this.orderTypeimg = orderTypeimg;
+    }
+
     public int getOrderTypeId() {
         return orderTypeId;
     }

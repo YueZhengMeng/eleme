@@ -8,6 +8,15 @@ public class DeliveryAddress {
     public String address;
     public String userId;
 
+    public DeliveryAddress(int daId, String contactName, int contactSex, String contactTel, String address, String userId) {
+        this.daId = daId;
+        this.contactName = contactName;
+        this.contactSex = contactSex;
+        this.contactTel = contactTel;
+        this.address = address;
+        this.userId = userId;
+    }
+
     public int getDaId() {
         return daId;
     }

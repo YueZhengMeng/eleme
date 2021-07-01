@@ -21,6 +21,16 @@ public class Order {
         this.orderState = 0;
     }
 
+    public Order(int orderId, String userId, int businessId, String orderDate, double orderTotal, int daId, int orderState) {
+        this.orderId = orderId;
+        this.userId = userId;
+        this.businessId = businessId;
+        this.orderDate = orderDate;
+        this.orderTotal = orderTotal;
+        this.daId = daId;
+        this.orderState = orderState;
+    }
+
     public static String transTime(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return sdf.format(date);
