@@ -7,6 +7,9 @@ public class Cart {
     public String userId;
     public int quantity;
 
+    public Cart() {
+    }
+
     public Cart(int foodId, int businessId, String userId, int quantity) {
         this.foodId = foodId;
         this.businessId = businessId;

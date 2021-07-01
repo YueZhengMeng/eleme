@@ -19,7 +19,7 @@ public class OrderController {
 
     @PostMapping("/pay")
     @ResponseStatus(HttpStatus.CREATED)
-    Order payCart(@RequestBody DeliveryAddress deliveryAddress, @RequestBody Integer businessId)
+    Order payCart(@RequestBody DeliveryAddress deliveryAddress, @RequestParam("businessId") int businessId)
     {
         String userId=userService.getLoginUserId();
         return orderService.generateNewOrder(userId, businessId, deliveryAddress);

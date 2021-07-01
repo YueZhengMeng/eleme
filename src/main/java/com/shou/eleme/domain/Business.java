@@ -11,6 +11,9 @@ public class Business {
     public double deliveryPrice;
     public String remarks;
 
+    public Business() {
+    }
+
     public Business(int businessId, int businessName, String businessAddress, String businessExplain,
                     String businessImg, int orderTypeId, double starPrice, double deliveryPrice, String remarks) {
         this.businessId = businessId;

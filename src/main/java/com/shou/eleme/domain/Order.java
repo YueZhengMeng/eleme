@@ -12,6 +12,9 @@ public class Order {
     public int daId;
     public int orderState;
 
+    public Order() {
+    }
+
     public Order(String userId, int businessId, double orderTotal, int daId) {
         this.userId = userId;
         this.businessId = businessId;
