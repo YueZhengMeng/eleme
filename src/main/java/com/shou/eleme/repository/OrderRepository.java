@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface OrderRepository {
-    @Insert("insert into orders(userId,businessId) values(#{userId},#{businessId})")
+    @Insert("insert into orders(userId,businessId,orderDate,orderTotal,daId,orderState) values(#{userId},#{businessId},#{orderDate},#{orderTotal},#{daId},#{orderState})")
     void insertNewOrder(Order order);
 
     @Select("select * from orders where userId=#{userId} and businessId = #{businessId} and orderState=0")
