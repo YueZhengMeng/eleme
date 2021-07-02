@@ -12,7 +12,7 @@
     <artifactId>eleme</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>eleme</name>
-    <description>Demo project for Spring Boot</description>
+    <description>eleme</description>
     <properties>
         <java.version>16</java.version>
         <repackage.classifier/>

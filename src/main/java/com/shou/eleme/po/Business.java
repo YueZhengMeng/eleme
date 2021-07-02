@@ -2,7 +2,7 @@ package com.shou.eleme.po;
 
 public class Business {
     public int businessId;
-    public int businessName;
+    public String businessName;
     public String businessAddress;
     public String businessExplain;
     public String businessImg;
@@ -14,7 +14,7 @@ public class Business {
     public Business() {
     }
 
-    public Business(int businessId, int businessName, String businessAddress, String businessExplain,
+    public Business(int businessId, String businessName, String businessAddress, String businessExplain,
                     String businessImg, int orderTypeId, double starPrice, double deliveryPrice, String remarks) {
         this.businessId = businessId;
         this.businessName = businessName;
@@ -35,11 +35,11 @@ public class Business {
         this.businessId = businessId;
     }
 
-    public int getBusinessName() {
+    public String getBusinessName() {
         return businessName;
     }
 
-    public void setBusinessName(int businessName) {
+    public void setBusinessName(String businessName) {
         this.businessName = businessName;
     }
 

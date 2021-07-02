@@ -11,6 +11,14 @@ public class DeliveryAddress {
     public DeliveryAddress() {
     }
 
+    public DeliveryAddress(String contactName, int contactSex, String contactTel, String address, String userId) {
+        this.contactName = contactName;
+        this.contactSex = contactSex;
+        this.contactTel = contactTel;
+        this.address = address;
+        this.userId = userId;
+    }
+
     public DeliveryAddress(int daId, String contactName, int contactSex, String contactTel, String address, String userId) {
         this.daId = daId;
         this.contactName = contactName;

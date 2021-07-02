@@ -10,4 +10,10 @@ import org.springframework.stereotype.Repository;
 public interface FoodRepository {
     @Select("select * from food where foodId=#{foodId}")
     Food selectFoodById(Integer foodId);
+
+    @Select("select * from food where foodName=#{foodName} and businessId=#{businessId}")
+    Food selectFoodByNameAndBus(String foodName,Integer businessId);
+
+    @Select("select * from food")
+    Food selectAllFood(Integer foodId);
 }
