@@ -1,4 +1,4 @@
-package com.shou.eleme.domain;
+package com.shou.eleme.po;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

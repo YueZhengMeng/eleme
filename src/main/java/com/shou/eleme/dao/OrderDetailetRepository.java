@@ -1,6 +1,6 @@
-package com.shou.eleme.repository;
+package com.shou.eleme.dao;
 
-import com.shou.eleme.domain.OrderDetailet;
+import com.shou.eleme.po.OrderDetailet;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;

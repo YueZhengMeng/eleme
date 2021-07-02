@@ -1,4 +1,4 @@
-package com.shou.eleme.domain;
+package com.shou.eleme.po;
 
 public class Cart {
     public int cartId;

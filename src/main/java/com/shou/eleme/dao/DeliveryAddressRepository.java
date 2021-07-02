@@ -1,6 +1,6 @@
-package com.shou.eleme.repository;
+package com.shou.eleme.dao;
 
-import com.shou.eleme.domain.DeliveryAddress;
+import com.shou.eleme.po.DeliveryAddress;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

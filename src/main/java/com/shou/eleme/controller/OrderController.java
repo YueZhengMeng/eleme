@@ -1,7 +1,8 @@
 package com.shou.eleme.controller;
 
-import com.shou.eleme.domain.DeliveryAddress;
-import com.shou.eleme.domain.Order;
+
+import com.shou.eleme.dto.AddANDBusID;
+import com.shou.eleme.po.Order;
 import com.shou.eleme.service.OrderService;
 import com.shou.eleme.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,10 @@ public class OrderController {
 
     @PostMapping("/pay")
     @ResponseStatus(HttpStatus.CREATED)
-    Order payCart(@RequestBody DeliveryAddress deliveryAddress, @RequestParam("businessId") int businessId)
+    Order payCart(@RequestBody AddANDBusID addANDBusID)
     {
         String userId=userService.getLoginUserId();
-        return orderService.generateNewOrder(userId, businessId, deliveryAddress);
+        return orderService.generateNewOrder(userId, addANDBusID);
     }
 
 }

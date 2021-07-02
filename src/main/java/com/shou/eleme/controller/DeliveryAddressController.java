@@ -1,7 +1,6 @@
 package com.shou.eleme.controller;
 
-import com.shou.eleme.domain.Cart;
-import com.shou.eleme.domain.DeliveryAddress;
+import com.shou.eleme.po.DeliveryAddress;
 import com.shou.eleme.service.DeliveryAddressService;
 import com.shou.eleme.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

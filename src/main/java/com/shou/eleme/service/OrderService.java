@@ -1,10 +1,11 @@
 package com.shou.eleme.service;
 
-import com.shou.eleme.domain.Cart;
-import com.shou.eleme.domain.DeliveryAddress;
-import com.shou.eleme.domain.Order;
-import com.shou.eleme.domain.OrderDetailet;
-import com.shou.eleme.repository.*;
+import com.shou.eleme.dto.AddANDBusID;
+import com.shou.eleme.po.Cart;
+import com.shou.eleme.po.DeliveryAddress;
+import com.shou.eleme.po.Order;
+import com.shou.eleme.po.OrderDetailet;
+import com.shou.eleme.dao.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,7 +30,8 @@ public class OrderService {
     @Autowired
     DeliveryAddressRepository deliveryAddressRepository;
 
-    public Order generateNewOrder(String userId, Integer businessId, DeliveryAddress deliveryAddress){
+    public Order generateNewOrder(String userId, AddANDBusID addANDBusID){
+        int businessId=addANDBusID.getBusinessId();
         List<Cart> allCart=cartRepository.selectMyCart(userId, businessId);
         double totalPrice=0.00;
 
@@ -38,7 +40,7 @@ public class OrderService {
             totalPrice=totalPrice+price*cart.getQuantity();
         }
 
-        Integer daId=deliveryAddressRepository.selectDeliveryAddressId(deliveryAddress);
+        Integer daId=deliveryAddressRepository.selectDeliveryAddressId(addANDBusID.getDeliveryAddress());
         Order order = new Order(userId, businessId, totalPrice,daId);
         orderRepository.insertNewOrder(order);
         Order temp= orderRepository.selectMyOrder(userId, businessId);

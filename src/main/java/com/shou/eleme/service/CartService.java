@@ -1,7 +1,7 @@
 package com.shou.eleme.service;
 
-import com.shou.eleme.domain.Cart;
-import com.shou.eleme.repository.CartRepository;
+import com.shou.eleme.po.Cart;
+import com.shou.eleme.dao.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

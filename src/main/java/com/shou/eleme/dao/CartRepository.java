@@ -1,6 +1,6 @@
-package com.shou.eleme.repository;
+package com.shou.eleme.dao;
 
-import com.shou.eleme.domain.Cart;
+import com.shou.eleme.po.Cart;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
