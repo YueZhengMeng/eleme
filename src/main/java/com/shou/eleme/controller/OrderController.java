@@ -1,8 +1,8 @@
 package com.shou.eleme.controller;
 
 
-import com.shou.eleme.dto.PayMessage;
 import com.shou.eleme.dto.OrderMessage;
+import com.shou.eleme.dto.PayMessage;
 import com.shou.eleme.po.Order;
 import com.shou.eleme.service.OrderService;
 import com.shou.eleme.service.UserService;
@@ -23,9 +23,8 @@ public class OrderController {
 
     @PostMapping("/pay")
     @ResponseStatus(HttpStatus.CREATED)
-    Order payCart(@RequestBody PayMessage payMessage)
-    {
-        String userId=userService.getLoginUserId();
+    Order payCart(@RequestBody PayMessage payMessage) {
+        String userId = userService.getLoginUserId();
         payMessage.setUserId(userId);
         return orderService.generateNewOrder(payMessage);
     }
@@ -33,7 +32,7 @@ public class OrderController {
     @GetMapping("/get/{businessId}")
     @ResponseStatus(HttpStatus.OK)
     public List<OrderMessage> myOrderMessage(@PathVariable Integer businessId) {
-        return orderService.getMyOrder(userService.getLoginUserId(),businessId);
+        return orderService.getMyOrder(userService.getLoginUserId(), businessId);
     }
 
 }

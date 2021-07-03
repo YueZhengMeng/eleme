@@ -21,7 +21,7 @@ public class CartController {
     @GetMapping("/get/{businessId}")
     @ResponseStatus(HttpStatus.OK)
     public List<Cart> allCart(@PathVariable Integer businessId) {
-        return cartService.getMyCart(userService.getLoginUserId(),businessId);
+        return cartService.getMyCart(userService.getLoginUserId(), businessId);
     }
 
     @PostMapping("/add")

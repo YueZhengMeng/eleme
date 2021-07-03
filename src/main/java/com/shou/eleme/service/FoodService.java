@@ -14,18 +14,15 @@ public class FoodService {
     @Autowired
     FoodRepository foodRepository;
 
-    public List<Food> getBusinessFoods(Integer businessId)
-    {
+    public List<Food> getBusinessFoods(Integer businessId) {
         return foodRepository.selectFoodByBusinessId(businessId);
     }
 
-    public  List<Food> getAllFoods()
-    {
+    public List<Food> getAllFoods() {
         return foodRepository.selectAllFood();
     }
 
-    public   Food getFoodById(Integer foodId)
-    {
+    public Food getFoodById(Integer foodId) {
         return foodRepository.selectFoodById(foodId);
     }
 }
