@@ -39,9 +39,9 @@ public class DeliveryAddressController {
         deliveryAddressService.changeDeliveryAddress(deliveryAddress);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete/{daId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteDeliveryAddress(@PathVariable("id") int daId) {
+    public void deleteDeliveryAddress(@PathVariable int daId) {
         deliveryAddressService.deleteDeliveryAddress(daId);
     }
 

@@ -14,9 +14,11 @@ public class CartService {
     @Autowired
     CartRepository cartRepository;
 
-    public void addCart(Cart cart)
+    public void addCart(List<Cart> cart)
     {
-        cartRepository.insertCart(cart);
+        for (Cart c: cart) {
+            cartRepository.insertCart(c);
+        }
     }
 
     public void deleteCart(Integer cartId)
