@@ -1,6 +1,5 @@
 package com.shou.eleme.controller;
 
-import com.shou.eleme.po.Cart;
 import com.shou.eleme.po.DeliveryAddress;
 import com.shou.eleme.service.DeliveryAddressService;
 import com.shou.eleme.service.UserService;
