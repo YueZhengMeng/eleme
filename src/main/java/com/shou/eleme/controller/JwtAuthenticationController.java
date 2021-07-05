@@ -45,6 +45,7 @@ public class JwtAuthenticationController {
         System.out.println(new BCryptPasswordEncoder().encode(authenticationRequest.getPassword()));
         System.out.println(authenticationRequest.getUsername());
         System.out.println(authenticationRequest.getPassword());
+        // TODO: Replace with real DB store
 
         return ResponseEntity.ok(generateJwtToken(authenticationRequest.getUsername()));
     }
