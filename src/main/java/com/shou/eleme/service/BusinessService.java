@@ -14,7 +14,7 @@ import java.util.List;
 public class BusinessService {
 
     @Autowired
-    BusinessRepository businessRepository;
+    private BusinessRepository businessRepository;
 
     public List<Business> getAllBusiness() {
         return businessRepository.selectAllBusiness();

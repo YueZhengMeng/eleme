@@ -1,4 +1,4 @@
-package com.shou.eleme.myconfig;
+package com.shou.eleme.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

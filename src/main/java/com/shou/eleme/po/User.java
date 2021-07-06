@@ -1,20 +1,32 @@
 package com.shou.eleme.po;
 
 public class User {
-    public String userId;
-    public String password;
-    public String userName;
-    public int userSex;
-    public String userImg;
-    public int delTag;
+    private String userId;
+    private String password;
+    private String userName;
+    private String phone;
+    private int userSex;
+    private String userImg;
+    private int delTag;
 
     public User() {
     }
 
-    public User(String userId, String password, String userName, int userSex, String userImg, int delTag) {
+    public User(String userId, String password,String phone,int userSex,String userName) {
         this.userId = userId;
         this.password = password;
         this.userName = userName;
+        this.phone = phone;
+        this.userSex = userSex;
+        this.userImg = "/tx/tx00.jpg";
+        this.delTag = 1;
+    }
+
+    public User(String userId, String password, String userName, String phone, int userSex, String userImg, int delTag) {
+        this.userId = userId;
+        this.password = password;
+        this.userName = userName;
+        this.phone = phone;
         this.userSex = userSex;
         this.userImg = userImg;
         this.delTag = delTag;
@@ -42,6 +54,14 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public int getUserSex() {

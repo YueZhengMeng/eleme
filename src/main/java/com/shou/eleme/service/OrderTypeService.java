@@ -12,7 +12,7 @@ import java.util.List;
 @Transactional
 public class OrderTypeService {
     @Autowired
-    OrderTypeRepository orderTypeRepository;
+    private OrderTypeRepository orderTypeRepository;
 
    public List<OrderType> getAllOrderTypes() {
         return orderTypeRepository.selectAllOrderTypes();

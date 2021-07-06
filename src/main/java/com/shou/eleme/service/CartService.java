@@ -12,7 +12,7 @@ import java.util.List;
 @Transactional
 public class CartService {
     @Autowired
-    CartRepository cartRepository;
+    private CartRepository cartRepository;
 
     public void addCart(List<Cart> cart)
     {

@@ -1,71 +1,57 @@
 package com.shou.eleme.controller;
 
-import java.util.Objects;
-
+import com.shou.eleme.dao.UserRepository;
 import com.shou.eleme.dto.JwtRequest;
 import com.shou.eleme.dto.JwtResponse;
+import com.shou.eleme.dto.SignupRequest;
+import com.shou.eleme.po.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.DisabledException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import com.shou.eleme.utils.JwtTokenUtil;
+import org.springframework.web.bind.annotation.*;
 import com.shou.eleme.service.JwtUserDetailsService;
 
-@RestController
 @CrossOrigin
+@RestController
+@RequestMapping("/authenticate")
 public class JwtAuthenticationController {
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
     private JwtUserDetailsService userDetailsService;
 
-    @RequestMapping(value = "/authenticate/login", method = RequestMethod.POST)
-    public ResponseEntity<?> login(@RequestBody JwtRequest authenticationRequest) throws Exception {
+    @Autowired
+    private UserRepository userRepository;
 
-        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
-        return ResponseEntity.ok(generateJwtToken(authenticationRequest.getUsername()));
+    @PostMapping("/login")
+    @ResponseStatus(HttpStatus.OK)
+    public JwtResponse login(@RequestBody JwtRequest authenticationRequest) throws Exception {
+
+        userDetailsService.authenticate(authenticationRequest.getUserId(), authenticationRequest.getPassword());
+        return userDetailsService.generateJwtToken(authenticationRequest.getUserId());
     }
 
-    @RequestMapping(value = "authenticate/signup", method = RequestMethod.POST)
-    public ResponseEntity<?> signup(@RequestBody JwtRequest authenticationRequest) throws Exception {
-        System.out.println(new BCryptPasswordEncoder().encode(authenticationRequest.getPassword()));
-        System.out.println(authenticationRequest.getUsername());
-        System.out.println(authenticationRequest.getPassword());
-        // TODO: Replace with real DB store
-
-        return ResponseEntity.ok(generateJwtToken(authenticationRequest.getUsername()));
+    @PostMapping(value = "/signup")
+    @ResponseStatus(HttpStatus.OK)
+    public JwtResponse signup(@RequestBody SignupRequest signupRequest) throws Exception {
+        String password = new BCryptPasswordEncoder().encode(signupRequest.getPassword());
+        String userId = signupRequest.getUserId();
+        int userSex = signupRequest.getUserSex();
+        String nickName = signupRequest.getNickName();
+        String phone=signupRequest.getPhone();
+        User user = new User(userId, password,phone,userSex, nickName);
+        userRepository.insertNewUser(user);
+        return userDetailsService.generateJwtToken(signupRequest.getUserId());
     }
 
-    private JwtResponse generateJwtToken(String username) {
-        final UserDetails userDetails = userDetailsService
-                .loadUserByUsername(username);
-
-        final String token = jwtTokenUtil.generateToken(userDetails);
-
-        return new JwtResponse(token);
+    @PutMapping("/ban")
+    @ResponseStatus(HttpStatus.OK)
+    public void banUser(@RequestBody String userId) {
+        userDetailsService.banUser(userId);
     }
 
-    private void authenticate(String username, String password) throws Exception {
-        try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-        } catch (DisabledException e) {
-            throw new Exception("USER_DISABLED", e);
-        } catch (BadCredentialsException e) {
-            throw new Exception("INVALID_CREDENTIALS", e);
-        }
+    @PutMapping("/unban")
+    @ResponseStatus(HttpStatus.OK)
+    public void unbanUser(@RequestBody String userId) {
+        userDetailsService.unbanUser(userId);
     }
 }

@@ -12,7 +12,7 @@ import java.util.List;
 @Transactional
 public class FoodService {
     @Autowired
-    FoodRepository foodRepository;
+    private FoodRepository foodRepository;
 
     public List<Food> getBusinessFoods(Integer businessId) {
         return foodRepository.selectFoodByBusinessId(businessId);

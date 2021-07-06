@@ -16,6 +16,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+import java.util.Arrays;
+import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity
@@ -47,18 +53,42 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
+    @Bean
+    public CorsFilter corsFilter() {
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.setAllowedOrigins(Collections.singletonList("http://localhost:9001"));
+        config.setAllowedOriginPatterns(Collections.singletonList("*"));
+        config.setAllowedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "responseType", "Authorization"));
+        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "OPTIONS", "DELETE", "PATCH"));
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
+    }
+
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable()
+        httpSecurity
+                .cors()
+                .and()
+                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/**", "/swagger-ui.html", "/webjars/**").permitAll()
+                .antMatchers("/v2/api-docs", "/configuration/ui", "/configuration/**").permitAll()
+                .antMatchers("/swagger-resources/**","/swagger-ui.html").permitAll()
                 .antMatchers("/api/food/**").permitAll()
                 .antMatchers("/api/business/**").permitAll()
+                .antMatchers("/api/ordertype/**").permitAll()
+                .antMatchers("/api/addr/**").permitAll()
                 .antMatchers("/authenticate/**").permitAll()
-                        .anyRequest().authenticated().and().
-                        exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
+                .antMatchers("/druid/**").permitAll()
+                .antMatchers("/webjars/**", "/static/**").permitAll()
+                .antMatchers("/dcfl/**", "/index/**", "/sj/**", "/sp/**", "/tx/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                .and()
+                .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }

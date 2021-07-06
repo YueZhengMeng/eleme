@@ -10,10 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class OrderDetailetService {
     @Autowired
-    OrderDetailetRepository orderDetailetRepository;
+    private OrderDetailetRepository orderDetailetRepository;
 
-    void addOrderDetailet(OrderDetailet orderDetailet)
-    {
+    public void addOrderDetailet(OrderDetailet orderDetailet) {
         orderDetailetRepository.insertOrderDetailet(orderDetailet);
     }
 }

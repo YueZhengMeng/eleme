@@ -1,8 +1,8 @@
 package com.shou.eleme.service;
 
 import com.shou.eleme.dto.FoodMessage;
-import com.shou.eleme.dto.OrderMessage;
-import com.shou.eleme.dto.PayMessage;
+import com.shou.eleme.dto.OrderResponse;
+import com.shou.eleme.dto.PayRequest;
 import com.shou.eleme.po.*;
 import com.shou.eleme.dao.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,43 +16,36 @@ import java.util.List;
 @Transactional
 public class OrderService {
     @Autowired
-    BusinessRepository businessRepository;
+    private BusinessRepository businessRepository;
 
     @Autowired
-    FoodRepository foodRepository;
+    private FoodRepository foodRepository;
 
     @Autowired
-    CartRepository cartRepository;
+    private OrderRepository orderRepository;
 
     @Autowired
-    OrderRepository orderRepository;
+    private OrderDetailetRepository orderDetailetRepository;
 
-    @Autowired
-    OrderDetailetRepository orderDetailetRepository;
-
-    @Autowired
-    DeliveryAddressRepository deliveryAddressRepository;
-
-    public Order generateNewOrder(PayMessage payMessage)
+    public Order generateNewOrder(PayRequest payRequest)
     {
-        int businessId= payMessage.getBusinessId();
-        String userId= payMessage.getUserId();
+        int businessId= payRequest.getBusinessId();
+        String userId= payRequest.getUserId();
 
         double totalPrice=0.00;
         totalPrice = totalPrice + businessRepository.selectBusinessById(businessId).getDeliveryPrice();
-        for (FoodMessage foodMessage : payMessage.getFoodANDQuanList()) {
-            double price=foodRepository.selectFoodByNameAndBus(foodMessage.getFoodName(),businessId).getFoodPrice();
+        for (FoodMessage foodMessage : payRequest.getFoodMessageList()) {
+            double price=foodRepository.selectFoodById(foodMessage.getFoodId()).getFoodPrice();
             totalPrice=totalPrice+price* foodMessage.getQuantity();
         }
 
-        int daId=deliveryAddressRepository.selectDeliveryAddressId(payMessage.getDeliveryAddress()).getDaId();
-
+        int daId= payRequest.getDaId();
         Order order = new Order(userId, businessId, totalPrice,daId);
         String orderDateTemp=order.getOrderDate();
         orderRepository.insertNewOrder(order);
         Order temp= orderRepository.selectMyNewOrder(userId, businessId,orderDateTemp);
 
-        for(FoodMessage foodMessage : payMessage.getFoodANDQuanList())
+        for(FoodMessage foodMessage : payRequest.getFoodMessageList())
         {
             int foodId=foodRepository.selectFoodByNameAndBus(foodMessage.getFoodName(),businessId).getFoodId();
             OrderDetailet orderDetailet=new OrderDetailet(temp.getOrderId(),foodId, foodMessage.getQuantity());
@@ -62,13 +55,13 @@ public class OrderService {
         return temp;
     }
 
-    public List<OrderMessage> getMyOrder(String userId, int businessId)
+    public List<OrderResponse> getMyOrder(String userId, int businessId)
     {
-        List<OrderMessage> orderMessages=new ArrayList<>();
+        List<OrderResponse> orderResponses =new ArrayList<>();
         List<Order> orders=orderRepository.selectAllMyOrder(userId,businessId);
         for (Order order : orders)
         {
-            OrderMessage temp = new OrderMessage();
+            OrderResponse temp = new OrderResponse();
             temp.setOrderId(order.getOrderId());
             temp.setUserId(order.getUserId());
             temp.setOrderDate(order.getOrderDate());
@@ -83,16 +76,17 @@ public class OrderService {
                 FoodMessage foodMessage =new FoodMessage();
                 foodMessage.setQuantity(orderDetailet.getQuantity());
                 Food food=foodRepository.selectFoodById(orderDetailet.getFoodId());
+                foodMessage.setFoodId(food.getFoodId());
                 foodMessage.setFoodName(food.getFoodName());
                 foodMessage.setFoodPrice(food.getFoodPrice());
                 temp.addFood(foodMessage);
             }
-            orderMessages.add(temp);
+            orderResponses.add(temp);
         }
-        return orderMessages;
+        return orderResponses;
     }
 
-    /*public Order generateNewOrder(String userId, PayMessage addANDBusID)
+    /*public Order generateNewOrder(String userId, PayRequest addANDBusID)
     {
         int businessId=addANDBusID.getBusinessId();
         List<Cart> allCart=cartRepository.selectMyCart(userId, businessId);

@@ -14,7 +14,7 @@ import java.util.List;
 public class OrderTypeController {
 
     @Autowired
-    OrderTypeService orderService;
+    private OrderTypeService orderService;
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)

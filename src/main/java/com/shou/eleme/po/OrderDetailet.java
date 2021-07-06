@@ -1,10 +1,10 @@
 package com.shou.eleme.po;
 
 public class OrderDetailet {
-    public int odId;
-    public int orderId;
-    public int foodId;
-    public int quantity;
+    private int odId;
+    private int orderId;
+    private int foodId;
+    private int quantity;
 
     public OrderDetailet() {
     }

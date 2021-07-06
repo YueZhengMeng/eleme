@@ -1,9 +1,9 @@
 package com.shou.eleme.po;
 
 public class OrderType {
-    public int orderTypeId;
-    public String orderTypename;
-    public String orderTypeimg;
+    private int orderTypeId;
+    private String orderTypename;
+    private String orderTypeimg;
 
     public OrderType() {
     }

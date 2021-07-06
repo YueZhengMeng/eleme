@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/business")
 public class BusinessController {
     @Autowired
-    BusinessService businessService;
+    private BusinessService businessService;
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)

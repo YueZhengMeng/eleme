@@ -12,7 +12,7 @@ import java.util.List;
 @Transactional
 public class DeliveryAddressService {
     @Autowired
-    DeliveryAddressRepository deliveryAddressRepository;
+    private DeliveryAddressRepository deliveryAddressRepository;
 
     public void addDeliveryAddress(DeliveryAddress deliveryAddress)
     {

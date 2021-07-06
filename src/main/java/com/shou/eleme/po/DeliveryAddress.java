@@ -1,12 +1,12 @@
 package com.shou.eleme.po;
 
 public class DeliveryAddress {
-    public int daId;
-    public String contactName;
-    public int contactSex;
-    public String contactTel;
-    public String address;
-    public String userId;
+    private int daId;
+    private String contactName;
+    private int contactSex;
+    private String contactTel;
+    private String address;
+    private String userId;
 
     public DeliveryAddress() {
     }

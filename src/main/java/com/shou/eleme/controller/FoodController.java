@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/food")
 public class FoodController {
     @Autowired
-    FoodService foodService;
+    private FoodService foodService;
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
@@ -25,5 +25,11 @@ public class FoodController {
     @ResponseStatus(HttpStatus.OK)
     public Food getFoodById(@PathVariable Integer id) {
         return foodService.getFoodById(id);
+    }
+
+    @GetMapping("/bus/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Food> getFoodByBus(@PathVariable Integer id) {
+        return foodService.getBusinessFoods(id);
     }
 }

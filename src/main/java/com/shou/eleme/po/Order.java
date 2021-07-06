@@ -4,13 +4,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Order {
-    public int orderId;
-    public String userId;
-    public int businessId;
-    public String orderDate;
-    public double orderTotal;
-    public int daId;
-    public int orderState;
+    private int orderId;
+    private String userId;
+    private int businessId;
+    private String orderDate;
+    private double orderTotal;
+    private int daId;
+    private int orderState;
 
     public Order() {
     }

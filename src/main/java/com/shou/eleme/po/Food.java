@@ -1,13 +1,13 @@
 package com.shou.eleme.po;
 
 public class Food {
-    public int foodId;
-    public String foodName;
-    public String foodExplain;
-    public String foodImg;
-    public double foodPrice;
-    public int businessId;
-    public String remarks;
+    private int foodId;
+    private String foodName;
+    private String foodExplain;
+    private String foodImg;
+    private double foodPrice;
+    private int businessId;
+    private String remarks;
 
     public Food() {
     }

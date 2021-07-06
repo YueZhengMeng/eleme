@@ -3,21 +3,20 @@ package com.shou.eleme.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderMessage {
-    public int orderId;
-    public String userId;
-    public String businessName;
-    public double deliveryPrice;
-    public String orderDate;
-    public double orderTotal;
-    public int orderState;
-    public List<FoodMessage> foods;
+public class OrderResponse {
+    private int orderId;
+    private String userId;
+    private String businessName;
+    private double deliveryPrice;
+    private String orderDate;
+    private double orderTotal;
+    private int orderState;
+    private List<FoodMessage> foods = new ArrayList<>();
 
-    public OrderMessage() {
-        this.foods=new ArrayList<>();
+    public OrderResponse() {
     }
 
-    public OrderMessage(int orderId, String userId, String businessName, double deliveryPrice, String orderDate, double orderTotal, int orderState, List<FoodMessage> foods) {
+    public OrderResponse(int orderId, String userId, String businessName, double deliveryPrice, String orderDate, double orderTotal, int orderState, List<FoodMessage> foods) {
         this.orderId = orderId;
         this.userId = userId;
         this.businessName = businessName;
@@ -28,8 +27,7 @@ public class OrderMessage {
         this.foods = foods;
     }
 
-    public void addFood(FoodMessage food)
-    {
+    public void addFood(FoodMessage food) {
         this.foods.add(food);
     }
 
@@ -37,7 +35,7 @@ public class OrderMessage {
         return orderId;
     }
 
-    public OrderMessage setOrderId(int orderId) {
+    public OrderResponse setOrderId(int orderId) {
         this.orderId = orderId;
         return this;
     }
@@ -46,7 +44,7 @@ public class OrderMessage {
         return userId;
     }
 
-    public OrderMessage setUserId(String userId) {
+    public OrderResponse setUserId(String userId) {
         this.userId = userId;
         return this;
     }
@@ -55,7 +53,7 @@ public class OrderMessage {
         return businessName;
     }
 
-    public OrderMessage setBusinessName(String businessName) {
+    public OrderResponse setBusinessName(String businessName) {
         this.businessName = businessName;
         return this;
     }
@@ -64,7 +62,7 @@ public class OrderMessage {
         return deliveryPrice;
     }
 
-    public OrderMessage setDeliveryPrice(double deliveryPrice) {
+    public OrderResponse setDeliveryPrice(double deliveryPrice) {
         this.deliveryPrice = deliveryPrice;
         return this;
     }
@@ -73,7 +71,7 @@ public class OrderMessage {
         return orderDate;
     }
 
-    public OrderMessage setOrderDate(String orderDate) {
+    public OrderResponse setOrderDate(String orderDate) {
         this.orderDate = orderDate;
         return this;
     }
@@ -82,7 +80,7 @@ public class OrderMessage {
         return orderTotal;
     }
 
-    public OrderMessage setOrderTotal(double orderTotal) {
+    public OrderResponse setOrderTotal(double orderTotal) {
         this.orderTotal = orderTotal;
         return this;
     }
@@ -91,7 +89,7 @@ public class OrderMessage {
         return orderState;
     }
 
-    public OrderMessage setOrderState(int orderState) {
+    public OrderResponse setOrderState(int orderState) {
         this.orderState = orderState;
         return this;
     }
@@ -100,7 +98,7 @@ public class OrderMessage {
         return foods;
     }
 
-    public OrderMessage setFoods(List<FoodMessage> foods) {
+    public OrderResponse setFoods(List<FoodMessage> foods) {
         this.foods = foods;
         return this;
     }

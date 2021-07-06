@@ -1,15 +1,15 @@
 package com.shou.eleme.po;
 
 public class Business {
-    public int businessId;
-    public String businessName;
-    public String businessAddress;
-    public String businessExplain;
-    public String businessImg;
-    public int orderTypeId;
-    public double starPrice;
-    public double deliveryPrice;
-    public String remarks;
+    private int businessId;
+    private String businessName;
+    private String businessAddress;
+    private String businessExplain;
+    private String businessImg;
+    private int orderTypeId;
+    private double starPrice;
+    private double deliveryPrice;
+    private String remarks;
 
     public Business() {
     }
