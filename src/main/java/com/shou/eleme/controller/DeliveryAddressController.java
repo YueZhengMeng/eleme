@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Iterator;
 import java.util.List;
 
 @CrossOrigin
@@ -30,7 +31,9 @@ public class DeliveryAddressController {
     @GetMapping("/get")
     @ResponseStatus(HttpStatus.OK)
     public List<DeliveryAddress> myDeliveryAddress() {
-        return deliveryAddressService.getDeliveryAddressByUserId(jwtUserDetailsService.getLoginUserId());
+        List<DeliveryAddress> list=deliveryAddressService.getDeliveryAddressByUserId(jwtUserDetailsService.getLoginUserId());
+        list.removeIf(deliveryAddress -> deliveryAddress.getDelTag() == 0);
+        return list;
     }
 
     @PutMapping("/change")
@@ -40,7 +43,7 @@ public class DeliveryAddressController {
     }
 
     @DeleteMapping("/delete/{daId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)
     public void deleteDeliveryAddress(@PathVariable int daId) {
         deliveryAddressService.deleteDeliveryAddress(daId);
     }

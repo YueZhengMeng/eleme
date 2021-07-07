@@ -4,6 +4,7 @@ import com.shou.eleme.po.Order;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,4 +20,13 @@ public interface OrderRepository {
 
     @Select("select * from orders where userId=#{userId} and businessId = #{businessId}")
     List<Order> selectAllMyOrder(String userId, int businessId);
+
+    @Update("update orders set orderState = 1 where orderId = #{orderId}")
+    void updateOrderPay(Integer orderId);
+
+    @Select("select * from orders where orderId = #{orderId}")
+    Order selectOrderById(int orderId);
+
+    @Select("select * from orders where userId = #{userId}")
+    List<Order> selectOrderByUserId(String userId);
 }

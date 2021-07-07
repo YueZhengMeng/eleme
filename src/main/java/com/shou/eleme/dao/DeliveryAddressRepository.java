@@ -21,6 +21,6 @@ public interface DeliveryAddressRepository {
     @Update("update deliveryaddress set contactName=#{contactName},contactSex=#{contactSex},contactTel=#{contactTel},address=#{address} where daId= #{daId}")
     void updateDeliveryAddress(DeliveryAddress deliveryAddress);
 
-    @Delete("delete from deliveryaddress where daId= #{daId}")
+    @Update("update deliveryaddress set delTag = 0 where daId = #{daId}")
     void deleteDeliveryAddress(int daId);
 }

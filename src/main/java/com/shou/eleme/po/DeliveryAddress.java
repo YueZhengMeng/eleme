@@ -7,25 +7,19 @@ public class DeliveryAddress {
     private String contactTel;
     private String address;
     private String userId;
+    private int delTag;
 
     public DeliveryAddress() {
     }
 
-    public DeliveryAddress(String contactName, int contactSex, String contactTel, String address, String userId) {
-        this.contactName = contactName;
-        this.contactSex = contactSex;
-        this.contactTel = contactTel;
-        this.address = address;
-        this.userId = userId;
-    }
-
-    public DeliveryAddress(int daId, String contactName, int contactSex, String contactTel, String address, String userId) {
+    public DeliveryAddress(int daId, String contactName, int contactSex, String contactTel, String address, String userId, int delTag) {
         this.daId = daId;
         this.contactName = contactName;
         this.contactSex = contactSex;
         this.contactTel = contactTel;
         this.address = address;
         this.userId = userId;
+        this.delTag = delTag;
     }
 
     public int getDaId() {
@@ -74,5 +68,13 @@ public class DeliveryAddress {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public int getDelTag() {
+        return delTag;
+    }
+
+    public void setDelTag(int delTag) {
+        this.delTag = delTag;
     }
 }
